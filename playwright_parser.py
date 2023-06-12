@@ -13,7 +13,7 @@ HEADERS = {
     'User-Agent': USERAGENT,
     'Accept': ACCEPT
 }
-FILE = 'parts.csv'
+FILE = 'files/parts.csv'
 
 # block pages by resource type. e.g. image, stylesheet
 BLOCK_RESOURCE_TYPES = [
@@ -84,25 +84,29 @@ def handle_search_results(parts_list, response):
 
 def main():
     """Open browser automatically with Playwright and get json data from response"""
-    urls = get_urls()[:3]
+    urls = get_urls()
     with sync_playwright() as p:
         parts = []
         for i, url in enumerate(urls):
-            def handle_response(response):
-                handle_search_results(parts, response)
+            try:
+                def handle_response(response):
+                    handle_search_results(parts, response)
 
-            browser = p.chromium.launch()
-            page = browser.new_page()
-            page.on("response", handle_response)
-            page.route("**/*", intercept_route)
-            page.goto(url)
-            page.wait_for_selector('div[_ngcontent-serverapp-c50]')
+                browser = p.chromium.launch()
+                page = browser.new_page()
+                page.on("response", handle_response)
+                page.route("**/*", intercept_route)
+                page.goto(url)
+                page.wait_for_selector('div[_ngcontent-serverapp-c50]')
 
-            page.context.close()
-            browser.close()
+                page.context.close()
+                browser.close()
+            except Exception as e:
+                print(e)
+                pd.DataFrame(parts).to_csv(FILE, index=False, sep=';', encoding='utf-8-sig')
 
             print(f'Parse {i + 1}/{len(urls)} parts')
-        pd.DataFrame(parts).to_csv('files/parts.csv', index=False, sep=';', encoding='utf-8-sig')
+        pd.DataFrame(parts).to_csv(FILE, index=False, sep=';', encoding='utf-8-sig')
 
 
 if __name__ == '__main__':

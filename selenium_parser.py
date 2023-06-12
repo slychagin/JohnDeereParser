@@ -1,6 +1,7 @@
 import json
 import time
 import random
+from typing import List
 
 import pandas as pd
 from selenium import webdriver
@@ -52,9 +53,9 @@ class JohnDeereParser:
             service=Service(ChromeDriverManager().install()),
             options=self.options
         )
-        # self.driver.maximize_window()
+        self.driver.maximize_window()
 
-    def parse_data(self):
+    def parse_data(self) -> List[dict]:
         """Parse data with Selenium and return it for next saving to csv"""
         parts_data = []
         articles = self.get_articles()
@@ -111,14 +112,14 @@ class JohnDeereParser:
 
         return parts_data
 
-    def get_articles(self):
+    def get_articles(self) -> List[str]:
         """Read and return articles from file"""
         with open(self.articles_file, encoding='utf-8') as f:
             articles_list = [i.strip() for i in f.readlines()]
 
         return articles_list
 
-    def check_search_results_list(self):
+    def check_search_results_list(self) -> None:
         """Check wile div with data loading"""
         try:
             WebDriverWait(self.driver, 20).until(ec.visibility_of_element_located(
@@ -128,7 +129,7 @@ class JohnDeereParser:
         except Exception as e:
             print(e)
 
-    def get_search_results(self):
+    def get_search_results(self) -> dict:
         """Fetch and return json data from response"""
         request_list = [request for request in self.driver.requests if f'v1//search/parts' in request.url]
         req = request_list[-1]
@@ -142,7 +143,7 @@ class JohnDeereParser:
         return search_result
 
     @staticmethod
-    def handle_data(data_list):
+    def handle_data(data_list) -> List[dict]:
         """Transforms the received data into the required form"""
         parts = []
         for item in data_list:
