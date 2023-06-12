@@ -66,12 +66,12 @@ class JohnDeereParser:
 
         result = self.get_search_results()
         parts_data.extend(self.handle_data(result))
-        print(f'Parsed: 1/{len(articles[:3])} parts')
+        print(f'Parsed: 1/{len(articles)} parts')
 
         count = 2
 
         # Repeat for all articles
-        for article in articles[1:3]:
+        for article in articles:
             try:
                 search_input = self.driver.find_element(
                     By.XPATH,
@@ -104,7 +104,7 @@ class JohnDeereParser:
             # Randomly sleep every 10 iteration
             if count % 10 == 0:
                 time.sleep(random.randrange(2, 5))
-            print(f'Parsed: {count}/{len(articles[:3])} parts')
+            print(f'Parsed: {count}/{len(articles)} parts')
             count += 1
 
         self.driver.close()
