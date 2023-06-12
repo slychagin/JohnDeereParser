@@ -17,6 +17,6 @@ Parser get data from JohnDeere site
 Playwright оказался быстрее примерно в 1,5 раза.
 
 #### Вы можете запустить этот проект локально просто сделав следующее:
-- `git clone https://github.com/slychagin/XBoxParser.git`;
+- `git clone https://github.com/slychagin/JohnDeereParser.git`;
 - у вас должен быть установлен Python;
 - установите все зависимости из файла requirements.txt.
