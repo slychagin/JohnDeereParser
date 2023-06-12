@@ -3,43 +3,12 @@ import time
 import pandas as pd
 from playwright.sync_api import sync_playwright
 
-
-HOST = 'https://partscatalog.deere.com/jdrc/search'
-SEARCH_URL = 'https://partscatalog.deere.com/jdrc/search/type/parts/term/'
-USERAGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 ' \
-            'Safari/537.36 '
-ACCEPT = '*/*'
-HEADERS = {
-    'User-Agent': USERAGENT,
-    'Accept': ACCEPT
-}
-FILE = 'files/parts.csv'
-
-# block pages by resource type. e.g. image, stylesheet
-BLOCK_RESOURCE_TYPES = [
-    'beacon',
-    'csp_report',
-    'font',
-    'image',
-    'imageset',
-    'media',
-    'object',
-    'texttrack',
-]
-
-# block 3rd party resources like tracking:
-BLOCK_RESOURCE_NAMES = [
-    'adzerk',
-    'analytics',
-    'cdn.api.twitter',
-    'doubleclick',
-    'exelator',
-    'facebook',
-    'fontawesome',
-    'google',
-    'google-analytics',
-    'googletagmanager',
-]
+from play_input import (
+    SEARCH_URL,
+    FILE,
+    BLOCK_RESOURCE_TYPES,
+    BLOCK_RESOURCE_NAMES
+)
 
 
 def intercept_route(route):
