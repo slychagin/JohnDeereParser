@@ -23,4 +23,5 @@ Playwright оказался быстрее примерно в 1,5 раза.
 - `git clone https://github.com/slychagin/JohnDeereParser.git`;
 - у вас должен быть установлен Python;
 - установите все зависимости из файла requirements.txt;
-- запустить файлы selenium_parser и playwrite_parser.
+- запустить файлы selenium_parser и playwrite_parser;
+- количество деталей, которые необходимо спарсить, соответсвенно можно изменить в файле articles.txt.
