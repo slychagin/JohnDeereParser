@@ -103,7 +103,6 @@ def main():
                 browser.close()
             except Exception as e:
                 print(e)
-                pd.DataFrame(parts).to_csv(FILE, index=False, sep=';', encoding='utf-8-sig')
 
             print(f'Parse {i + 1}/{len(urls)} parts')
         pd.DataFrame(parts).to_csv(FILE, index=False, sep=';', encoding='utf-8-sig')
