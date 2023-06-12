@@ -1,9 +1,9 @@
 # JohnDeereParser
 ![made by](https://img.shields.io/badge/made_by-slychagin-green)
 ![python](https://img.shields.io/badge/python-v3.10.5-blue)
-![selenium](https://img.shields.io/badge/selenium-blue)
+![selenium](https://img.shields.io/badge/selenium-green)
 ![playwrite](https://img.shields.io/badge/playwrite-blue)
-![pandas](https://img.shields.io/badge/pandas-green)
+![pandas](https://img.shields.io/badge/pandas-red)
 
 Parser get data from JohnDeere site
 
