@@ -2,7 +2,7 @@
 ![made by](https://img.shields.io/badge/made_by-slychagin-green)
 ![python](https://img.shields.io/badge/python-v3.10.5-blue)
 ![selenium](https://img.shields.io/badge/selenium-green)
-![playwrite](https://img.shields.io/badge/playwrite-blue)
+![playwright](https://img.shields.io/badge/playwright-blue)
 ![pandas](https://img.shields.io/badge/pandas-red)
 
 Parser get data from JohnDeere site
@@ -15,7 +15,7 @@ Parser get data from JohnDeere site
 Playwright оказался быстрее примерно в 1,5 раза.
 
 Касательно того как ускорить парсинг 1000 000 позиций - тут нужна работа напрямую с json из response.
-У меня получилось вытянуть данные только с помощью Selenium и Playwrite, а они медленные.
+У меня получилось вытянуть данные только с помощью Selenium и Playwright, а они медленные.
 Соответсвенно при работе напрямую (я уже делал так в парсере Coindesck https://github.com/slychagin/CoindeskParser)
 я бы использовал асинхронную библиотеку aiohttp.
 
@@ -23,5 +23,5 @@ Playwright оказался быстрее примерно в 1,5 раза.
 - `git clone https://github.com/slychagin/JohnDeereParser.git`;
 - у вас должен быть установлен Python;
 - установите все зависимости из файла requirements.txt;
-- запустить файлы selenium_parser и playwrite_parser;
+- запустить файлы selenium_parser и playwright_parser;
 - количество деталей, которые необходимо спарсить, соответсвенно можно изменить в файле articles.txt.
