@@ -19,6 +19,7 @@ from selen_input import (
     ARTICLES_FILE,
     FILE
 )
+from timer import timeit
 
 
 class JohnDeereParser:
@@ -35,6 +36,7 @@ class JohnDeereParser:
         )
         self.driver.maximize_window()
 
+    @timeit
     def parse_data(self) -> List[dict]:
         """Parse data with Selenium and return it for next saving to csv"""
         parts_data = []
@@ -143,13 +145,7 @@ class JohnDeereParser:
 
 if __name__ == '__main__':
     print('Start parsing...')
-    start_time = time.perf_counter()
-
     parser = JohnDeereParser()
     data = parser.parse_data()
     pd.DataFrame(data).to_csv(FILE, index=False, sep=';', encoding='utf-8-sig')
     print('Data saved to file!')
-
-    end_time = time.perf_counter()
-    total_time = end_time - start_time
-    print(f'{total_time:.4f} seconds')

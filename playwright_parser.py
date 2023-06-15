@@ -1,5 +1,3 @@
-import time
-
 import pandas as pd
 from playwright.sync_api import sync_playwright
 
@@ -9,6 +7,7 @@ from play_input import (
     BLOCK_RESOURCE_TYPES,
     BLOCK_RESOURCE_NAMES
 )
+from timer import timeit
 
 
 def intercept_route(route):
@@ -51,6 +50,7 @@ def handle_search_results(parts_list, response):
                 })
 
 
+@timeit
 def main():
     """Open browser automatically with Playwright and get json data from response"""
     urls = get_urls()
@@ -79,10 +79,4 @@ def main():
 
 if __name__ == '__main__':
     print('Start parsing...')
-    start_time = time.perf_counter()
-
     main()
-
-    end_time = time.perf_counter()
-    total_time = end_time - start_time
-    print(f'{total_time:.4f} seconds')
