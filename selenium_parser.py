@@ -51,7 +51,7 @@ class JohnDeereParser:
         count = 2
 
         # Repeat for all articles
-        for article in articles:
+        for article in articles[1:]:
             try:
                 search_input = self.driver.find_element(
                     By.XPATH,
