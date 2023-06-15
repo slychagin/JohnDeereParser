@@ -85,7 +85,6 @@ class JohnDeereParser:
             count += 1
 
         self.driver.close()
-        self.driver.quit()
 
         return parts_data
 
