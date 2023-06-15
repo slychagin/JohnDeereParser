@@ -4,7 +4,7 @@ import random
 from typing import List
 
 import pandas as pd
-from selenium import webdriver
+from selenium.webdriver import Keys
 from seleniumwire import webdriver
 from seleniumwire.utils import decode
 from selenium.webdriver.chrome.service import Service
@@ -64,12 +64,7 @@ class JohnDeereParser:
                 search_input.send_keys(article)
                 time.sleep(1)
 
-                search_btn = self.driver.find_element(
-                    By.XPATH,
-                    '//*[@id="applicationContainer"]/div[1]/div[2]/div[1]/div[2]/app-search/div/div['
-                    '1]/app-search-input/div/div[3]/div/span/i'
-                )
-                search_btn.click()
+                search_input.send_keys(Keys.RETURN)
 
                 self.check_search_results_list()
                 time.sleep(2)
@@ -109,7 +104,7 @@ class JohnDeereParser:
         except Exception as e:
             print(e)
 
-    def get_search_results(self) -> dict:
+    def get_search_results(self) -> List[dict]:
         """Fetch and return json data from response"""
         request_list = [request for request in self.driver.requests if f'v1//search/parts' in request.url]
         req = request_list[-1]
